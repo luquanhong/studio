@@ -30,8 +30,9 @@ LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/ffmpeg/include
 
 include $(PREBUILT_SHARED_LIBRARY)
 
-
-
+#################################################
+# Video decoder
+#################################################
 
 include $(CLEAR_VARS)
 
@@ -48,7 +49,7 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/ffmpeg/include
 $(info LOCAL_EXPORT_C_INCLUDES = $(LOCAL_C_INCLUDES))
 
 LOCAL_SRC_FILES :=  looper.cpp \
-                    hello-jni.cpp
+                    VideoDecoder.cpp
 
 LOCAL_LDLIBS    := -llog  -L$(LOCAL_PATH)/ffmpeg -lffmpeg
 

@@ -37,7 +37,7 @@ public class PlayActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                ffMedia.init("/sdcard/zuihou_encode_264.mp4");
+                ffMedia.init("/sdcard/zuihou_480p_264.mp4");
 
                 ffMedia.start();
             }
@@ -47,7 +47,7 @@ public class PlayActivity extends AppCompatActivity {
         h265.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ffMedia.init("/sdcard/zuihou_encode_265.mp4");
+                ffMedia.init("/sdcard/zuihou_480p_265.mp4");
 
                 ffMedia.start();
             }
