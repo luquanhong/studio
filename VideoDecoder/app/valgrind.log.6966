@@ -1,0 +1,1000 @@
+==6966== Memcheck, a memory error detector
+==6966== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==6966== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==6966== Command: /system/bin/app_process /system/bin --application --nice-name=com.example.hellojni com.android.internal.os.WrapperInit 42 3 android.app.ActivityThread
+==6966== Parent PID: 6965
+==6966== 
+--6966-- 
+--6966-- Valgrind options:
+--6966--    -v
+--6966--    --error-limit=no
+--6966--    --trace-children=yes
+--6966--    --log-file=/sdcard/valgrind.log.%p
+--6966--    --tool=memcheck
+--6966--    --leak-check=full
+--6966--    --show-reachable=yes
+--6966-- Contents of /proc/version:
+--6966--   Linux version 3.4.35-g72f9773 (builder@taishan) (gcc version 4.6.x-google 20120106 (prerelease) (GCC) ) #1 SMP PREEMPT Wed May 20 20:21:50 CST 2015
+--6966-- 
+--6966-- Arch and hwcaps: ARM, LittleEndian, ARMv7-neon-vfp
+--6966-- Page sizes: currently 4096, max supported 4096
+--6966-- Valgrind library directory: /data/local/Inst/lib/valgrind
+--6966-- Reading syms from /system/bin/app_process
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 10 available
+--6966--   Reading EXIDX entries: 9 attempted, 9 successful
+--6966-- Reading syms from /system/bin/linker
+--6966--    object doesn't have a symbol table
+--6966-- Reading syms from /data/local/Inst/lib/valgrind/memcheck-arm-linux
+--6966--    object doesn't have a dynamic symbol table
+--6966-- Scheduler: using generic scheduler lock implementation.
+--6966-- Reading suppressions file: /data/local/Inst/lib/valgrind/default.supp
+--6966-- Reading syms from /data/local/Inst/lib/valgrind/vgpreload_core-arm-linux.so
+--6966-- Reading syms from /data/local/Inst/lib/valgrind/vgpreload_memcheck-arm-linux.so
+--6966-- Reading syms from /system/lib/libcutils.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 148 available
+--6966--   Reading EXIDX entries: 147 attempted, 147 successful
+--6966-- Reading syms from /system/lib/liblog.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 30 available
+--6966--   Reading EXIDX entries: 29 attempted, 29 successful
+--6966-- Reading syms from /system/lib/libc.so
+--6966--    object doesn't have a symbol table
+--6966-- Reading syms from /system/lib/libstdc++.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 7 available
+--6966--   Reading EXIDX entries: 6 attempted, 6 successful
+--6966-- Reading syms from /system/lib/libm.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 155 available
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+--6966--   Reading EXIDX entries: 154 attempted, 151 successful
+--6966-- Reading syms from /system/lib/libutils.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 367 available
+--6966--   Reading EXIDX entries: 366 attempted, 366 successful
+--6966-- Reading syms from /system/lib/libcorkscrew.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 39 available
+--6966--   Reading EXIDX entries: 38 attempted, 38 successful
+--6966-- Reading syms from /system/lib/libgccdemangle.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 43 available
+--6966--   Reading EXIDX entries: 42 attempted, 42 successful
+--6966-- Reading syms from /system/lib/libbinder.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 506 available
+--6966--   Reading EXIDX entries: 505 attempted, 505 successful
+--6966-- Reading syms from /system/lib/libandroid_runtime.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 2316 available
+--6966--   Reading EXIDX entries: 2315 attempted, 2315 successful
+--6966-- Reading syms from /system/lib/libmemtrack.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 11 available
+--6966--   Reading EXIDX entries: 10 attempted, 10 successful
+--6966-- Reading syms from /system/lib/libhardware.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 3 available
+--6966--   Reading EXIDX entries: 2 attempted, 2 successful
+--6966-- Reading syms from /system/lib/libandroidfw.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 348 available
+--6966--   Reading EXIDX entries: 347 attempted, 347 successful
+--6966-- Reading syms from /system/lib/libz.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 118 available
+--6966--   Reading EXIDX entries: 116 attempted, 116 successful
+--6966-- Reading syms from /system/lib/libexpat.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 221 available
+--6966--   Reading EXIDX entries: 219 attempted, 219 successful
+--6966-- Reading syms from /system/lib/libnativehelper.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 45 available
+--6966--   Reading EXIDX entries: 44 attempted, 44 successful
+--6966-- Reading syms from /system/lib/libstlport.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 690 available
+--6966--   Reading EXIDX entries: 689 attempted, 689 successful
+--6966-- Reading syms from /system/lib/libnetutils.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 64 available
+--6966--   Reading EXIDX entries: 63 attempted, 63 successful
+--6966-- Reading syms from /system/lib/libui.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 149 available
+--6966--   Reading EXIDX entries: 148 attempted, 148 successful
+--6966-- Reading syms from /system/lib/libsync.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 7 available
+--6966--   Reading EXIDX entries: 6 attempted, 6 successful
+--6966-- Reading syms from /system/lib/libgui.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 708 available
+--6966--   Reading EXIDX entries: 707 attempted, 707 successful
+--6966-- Reading syms from /system/lib/libEGL.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 1808 available
+--6966--   Reading EXIDX entries: 1807 attempted, 1807 successful
+--6966-- Reading syms from /system/lib/libGLES_trace.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 773 available
+--6966--   Reading EXIDX entries: 772 attempted, 772 successful
+--6966-- Reading syms from /system/lib/libGLESv2.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 3 available
+--6966--   Reading EXIDX entries: 2 attempted, 2 successful
+--6966-- Reading syms from /system/lib/libinput.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 229 available
+--6966--   Reading EXIDX entries: 228 attempted, 228 successful
+--6966-- Reading syms from /system/lib/libcamera_client.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 548 available
+--6966--   Reading EXIDX entries: 547 attempted, 547 successful
+--6966-- Reading syms from /system/lib/libcamera_metadata.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 23 available
+--6966--   Reading EXIDX entries: 22 attempted, 22 successful
+--6966-- Reading syms from /system/lib/libskia.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 7674 available
+--6966--   Reading EXIDX entries: 7673 attempted, 7673 successful
+--6966-- Reading syms from /system/lib/libft2.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 624 available
+--6966--   Reading EXIDX entries: 623 attempted, 623 successful
+--6966-- Reading syms from /system/lib/libpng.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 235 available
+--6966--   Reading EXIDX entries: 234 attempted, 234 successful
+--6966-- Reading syms from /system/lib/libjpeg.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 276 available
+--6966--   Reading EXIDX entries: 275 attempted, 275 successful
+--6966-- Reading syms from /system/lib/libicuuc.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 2115 available
+--6966--   Reading EXIDX entries: 2114 attempted, 2114 successful
+--6966-- Reading syms from /system/lib/libgabi++.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 20 available
+--6966--   Reading EXIDX entries: 19 attempted, 19 successful
+--6966-- Reading syms from /system/lib/libicui18n.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 3068 available
+--6966--   Reading EXIDX entries: 3067 attempted, 3067 successful
+--6966-- Reading syms from /system/lib/libsqlite.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 1053 available
+--6966--   Reading EXIDX entries: 1052 attempted, 1052 successful
+--6966-- Reading syms from /system/lib/libGLESv1_CM.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 3 available
+--6966--   Reading EXIDX entries: 2 attempted, 2 successful
+--6966-- Reading syms from /system/lib/libETC1.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 16 available
+--6966--   Reading EXIDX entries: 15 attempted, 15 successful
+--6966-- Reading syms from /system/lib/libhardware_legacy.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 148 available
+--6966--   Reading EXIDX entries: 147 attempted, 147 successful
+--6966-- Reading syms from /system/lib/libwpa_client.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 24 available
+--6966--   Reading EXIDX entries: 23 attempted, 23 successful
+--6966-- Reading syms from /system/lib/libselinux.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 141 available
+--6966--   Reading EXIDX entries: 140 attempted, 140 successful
+--6966-- Reading syms from /system/lib/libsonivox.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 263 available
+--6966--   Reading EXIDX entries: 262 attempted, 262 successful
+--6966-- Reading syms from /system/lib/libcrypto.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 2648 available
+--6966--   Reading EXIDX entries: 2646 attempted, 2646 successful
+--6966-- Reading syms from /system/lib/libssl.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 446 available
+--6966--   Reading EXIDX entries: 445 attempted, 445 successful
+--6966-- Reading syms from /system/lib/libmedia.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 1536 available
+--6966--   Reading EXIDX entries: 1535 attempted, 1535 successful
+--6966-- Reading syms from /system/lib/libstagefright_foundation.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 216 available
+--6966--   Reading EXIDX entries: 215 attempted, 215 successful
+--6966-- Reading syms from /system/lib/libaudioutils.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 23 available
+--6966--   Reading EXIDX entries: 22 attempted, 22 successful
+--6966-- Reading syms from /system/lib/libspeexresampler.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 17 available
+--6966--   Reading EXIDX entries: 16 attempted, 16 successful
+--6966-- Reading syms from /system/lib/libpowerservice_client.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 71 available
+--6966--   Reading EXIDX entries: 70 attempted, 70 successful
+--6966-- Reading syms from /system/lib/libusbhost.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 31 available
+--6966--   Reading EXIDX entries: 30 attempted, 30 successful
+--6966-- Reading syms from /system/lib/libharfbuzz_ng.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 553 available
+--6966--   Reading EXIDX entries: 552 attempted, 552 successful
+--6966-- Reading syms from /system/lib/libhwui.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 1015 available
+--6966--   Reading EXIDX entries: 1014 attempted, 1014 successful
+--6966-- Reading syms from /system/lib/libRS.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 649 available
+--6966--   Reading EXIDX entries: 648 attempted, 648 successful
+--6966-- Reading syms from /system/lib/libbcc.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 268 available
+--6966--   Reading EXIDX entries: 267 attempted, 267 successful
+--6966-- Reading syms from /system/lib/libbcinfo.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 369 available
+--6966--   Reading EXIDX entries: 368 attempted, 368 successful
+--6966-- Reading syms from /system/lib/libLLVM.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 15487 available
+--6966--   Reading EXIDX entries: 15484 attempted, 15484 successful
+--6966-- Reading syms from /system/lib/libRScpp.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 158 available
+--6966--   Reading EXIDX entries: 157 attempted, 157 successful
+--6966-- REDIR: 0x485a0b1 (libc.so:strlen) redirected to 0x481ef60 (strlen)
+--6966-- REDIR: 0x485aab3 (libc.so:strchr) redirected to 0x481e74c (strchr)
+--6966-- REDIR: 0x487162d (libc.so:strncmp) redirected to 0x481fb38 (strncmp)
+--6966-- REDIR: 0x4844c51 (libc.so:malloc) redirected to 0x481afa8 (malloc)
+--6966-- REDIR: 0x485955c (libc.so:memset) redirected to 0x4822ccc (memset)
+--6966-- REDIR: 0x4892919 (libstdc++.so:operator new[](unsigned int)) redirected to 0x481be40 (operator new[](unsigned int))
+--6966-- REDIR: 0x4858fd8 (libc.so:memcpy) redirected to 0x4820bf8 (memcpy)
+--6966-- REDIR: 0x4871871 (libc.so:wcslen) redirected to 0x4824180 (wcslen)
+--6966-- REDIR: 0x485aabc (libc.so:memmove) redirected to 0x4822d7c (memmove)
+--6966-- REDIR: 0x4844c65 (libc.so:free) redirected to 0x481c51c (free)
+--6966-- REDIR: 0x4892927 (libstdc++.so:operator delete[](void*)) redirected to 0x481d098 (operator delete[](void*))
+--6966-- REDIR: 0x4859ad0 (libc.so:strcmp) redirected to 0x482021c (strcmp)
+--6966-- REDIR: 0x4860419 (libc.so:unsetenv) redirected to 0x4824470 (unsetenv)
+--6966-- REDIR: 0x48717b5 (libc.so:strlcpy) redirected to 0x481f9c8 (strlcpy)
+--6966-- REDIR: 0x4859d69 (libc.so:strcpy) redirected to 0x481f160 (strcpy)
+--6966-- Reading syms from /system/lib/libdvm.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 1957 available
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+--6966--   Reading EXIDX entries: 1955 attempted, 1954 successful
+--6966-- REDIR: 0x4862a9d (libc.so:strstr) redirected to 0x4823e00 (strstr)
+--6966-- REDIR: 0x4859679 (libc.so:strcat) redirected to 0x481ead0 (strcat)
+--6966-- REDIR: 0x4844c79 (libc.so:calloc) redirected to 0x481d530 (calloc)
+--6966-- Reading syms from /system/lib/libnvopt_dvm.so
+--6966--   Considering /system/lib/libnvopt_dvm.so ..
+--6966--   .. CRC mismatch (computed 057f5b9f wanted 6fcdac34)
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 31 available
+--6966--   Reading EXIDX entries: 30 attempted, 30 successful
+==6966== Warning: set address range perms: large range [0x6282000, 0x26282000) (noaccess)
+--6966-- REDIR: 0x48716a3 (libc.so:strrchr) redirected to 0x481e58c (strrchr)
+--6966-- REDIR: 0x48716ab (libc.so:memchr) redirected to 0x48204f4 (memchr)
+--6966-- REDIR: 0x4858b78 (libc.so:memcmp) redirected to 0x4821fa8 (memcmp)
+--6966-- Reading syms from /system/lib/libjavacore.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 625 available
+--6966--   Reading EXIDX entries: 624 attempted, 624 successful
+--6966-- REDIR: 0x487167b (libc.so:strncpy) redirected to 0x481f398 (strncpy)
+--6966-- REDIR: 0x4844c8d (libc.so:realloc) redirected to 0x481d758 (realloc)
+--6966-- REDIR: 0x485a531 (libc.so:__strcpy_chk) redirected to 0x48236dc (__strcpy_chk)
+--6966-- REDIR: 0x4844cb5 (libc.so:malloc_usable_size) redirected to 0x481dd68 (malloc_usable_size)
+--6966-- REDIR: 0x485a8cd (libc.so:__memmove_chk) redirected to 0x4823594 (__memmove_chk)
+--6966-- Reading syms from /system/lib/libmiuinative.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 129 available
+--6966--   Reading EXIDX entries: 128 attempted, 128 successful
+--6966-- REDIR: 0x4858fd0 (libc.so:__memcpy_chk) redirected to 0x4823cc8 (__memcpy_chk)
+--6966-- Reading syms from /system/lib/libdrmframework_jni.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 66 available
+--6966--   Reading EXIDX entries: 65 attempted, 65 successful
+==6966== Invalid read of size 4
+==6966==    at 0x400560C: ??? (in /system/bin/linker)
+==6966==  Address 0x37d7378c is 1 bytes after a block of size 35 alloc'd
+==6966==    at 0x481B04C: malloc (vg_replace_malloc.c:299)
+==6966==    by 0x6108E83: dvmCreateCstrFromString(StringObject const*) (in /system/lib/libdvm.so)
+==6966==    by 0x611AED5: ??? (in /system/lib/libdvm.so)
+==6966==    by 0x60DA723: ??? (in /system/lib/libdvm.so)
+==6966==    by 0x60E1793: dvmMterpStd(Thread*) (in /system/lib/libdvm.so)
+==6966==    by 0x60DEDF7: dvmInterpret(Thread*, Method const*, JValue*) (in /system/lib/libdvm.so)
+==6966==    by 0x6113D77: dvmCallMethodV(Thread*, Method const*, Object*, bool, JValue*, std::__va_list) (in /system/lib/libdvm.so)
+==6966==    by 0x6113D9B: dvmCallMethod(Thread*, Method const*, Object*, JValue*, ...) (in /system/lib/libdvm.so)
+==6966==    by 0x611F413: dvmInitClass (in /system/lib/libdvm.so)
+==6966==    by 0x611F5D3: dvmFindClass(char const*, Object*) (in /system/lib/libdvm.so)
+==6966==    by 0x61186C9: dvmFindClassByName(StringObject*, Object*, bool) (in /system/lib/libdvm.so)
+==6966==    by 0x611ABDD: ??? (in /system/lib/libdvm.so)
+==6966== 
+--6966-- Reading syms from /system/lib/libdrmframework.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 249 available
+--6966--   Reading EXIDX entries: 248 attempted, 248 successful
+--6966-- Reading syms from /system/lib/libmedia_jni.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 569 available
+--6966--   Reading EXIDX entries: 568 attempted, 568 successful
+--6966-- Reading syms from /system/lib/libstagefright.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 2190 available
+--6966--   Reading EXIDX entries: 2187 attempted, 2187 successful
+--6966-- Reading syms from /system/lib/libconnectivitymanager.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 7 available
+--6966--   Reading EXIDX entries: 6 attempted, 6 successful
+--6966-- Reading syms from /system/lib/libstagefright_omx.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 260 available
+--6966--   Reading EXIDX entries: 259 attempted, 259 successful
+--6966-- Reading syms from /system/lib/libstagefright_yuv.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 21 available
+--6966--   Reading EXIDX entries: 20 attempted, 20 successful
+--6966-- Reading syms from /system/lib/libvorbisidec.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 121 available
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+--6966--   Reading EXIDX entries: 120 attempted, 114 successful
+--6966-- Reading syms from /system/lib/libpowermanager.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 20 available
+--6966--   Reading EXIDX entries: 19 attempted, 19 successful
+--6966-- Reading syms from /system/lib/libstagefright_enc_common.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 7 available
+--6966--   Reading EXIDX entries: 6 attempted, 6 successful
+--6966-- Reading syms from /system/lib/libstagefright_avc_common.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 42 available
+--6966--   Reading EXIDX entries: 41 attempted, 41 successful
+--6966-- Reading syms from /system/lib/libmtp.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 169 available
+--6966--   Reading EXIDX entries: 168 attempted, 168 successful
+--6966-- Reading syms from /system/lib/libexif.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 146 available
+--6966--   Reading EXIDX entries: 145 attempted, 145 successful
+--6966-- Reading syms from /system/lib/libstagefright_amrnb_common.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 64 available
+--6966--   Reading EXIDX entries: 63 attempted, 63 successful
+--6966-- Reading syms from /system/lib/libjhead_jni.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 14 available
+--6966--   Reading EXIDX entries: 13 attempted, 13 successful
+--6966-- Reading syms from /system/lib/libjhead.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 44 available
+--6966--   Reading EXIDX entries: 43 attempted, 43 successful
+--6966-- Reading syms from /system/lib/libvideoeditor_jni.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 154 available
+--6966--   Reading EXIDX entries: 153 attempted, 153 successful
+--6966-- Reading syms from /system/lib/libaudioflinger.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 855 available
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+--6966--   Reading EXIDX entries: 854 attempted, 853 successful
+--6966-- Reading syms from /system/lib/libcommon_time_client.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 114 available
+--6966--   Reading EXIDX entries: 113 attempted, 113 successful
+--6966-- Reading syms from /system/lib/libnbaio.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 91 available
+--6966--   Reading EXIDX entries: 90 attempted, 90 successful
+--6966-- Reading syms from /system/lib/libeffects.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 19 available
+--6966--   Reading EXIDX entries: 18 attempted, 18 successful
+--6966-- Reading syms from /system/lib/libvideoeditor_core.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 430 available
+--6966--   Reading EXIDX entries: 429 attempted, 429 successful
+--6966-- Reading syms from /system/lib/libvideoeditor_osal.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 62 available
+--6966--   Reading EXIDX entries: 61 attempted, 61 successful
+--6966-- Reading syms from /system/lib/libvideoeditor_videofilters.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 9 available
+--6966--   Reading EXIDX entries: 8 attempted, 8 successful
+--6966-- Reading syms from /system/lib/libvideoeditorplayer.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 268 available
+--6966--   Reading EXIDX entries: 267 attempted, 267 successful
+disInstr(thumb): unhandled instruction: 0x4771 0x5F43
+--6966-- Reading syms from /system/lib/librs_jni.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 98 available
+--6966--   Reading EXIDX entries: 97 attempted, 97 successful
+==6966== Conditional jump or move depends on uninitialised value(s)
+==6966==    at 0x400564A: ??? (in /system/bin/linker)
+==6966== 
+--6966-- Reading syms from /system/lib/libwebviewchromium.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 93570 available
+--6966--   Reading EXIDX entries: 93566 attempted, 93566 successful
+--6966-- Reading syms from /system/lib/libandroid.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 133 available
+--6966--   Reading EXIDX entries: 132 attempted, 132 successful
+--6966-- Reading syms from /system/lib/libjnigraphics.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 5 available
+--6966--   Reading EXIDX entries: 4 attempted, 4 successful
+--6966-- Reading syms from /system/lib/libwebviewchromium_plat_support.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 22 available
+--6966--   Reading EXIDX entries: 21 attempted, 21 successful
+--6966-- Reading syms from /system/lib/libjavacrypto.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 267 available
+--6966--   Reading EXIDX entries: 266 attempted, 266 successful
+==6966== Mismatched free() / delete / delete []
+==6966==    at 0x481D138: operator delete[](void*) (vg_replace_malloc.c:620)
+==6966==    by 0x6119951: ??? (in /system/lib/libdvm.so)
+==6966==    by 0x6103265: dvmResolveNativeMethod(unsigned int const*, JValue*, Method const*, Thread*) (in /system/lib/libdvm.so)
+==6966==    by 0x60DA723: ??? (in /system/lib/libdvm.so)
+==6966==    by 0x60E1793: dvmMterpStd(Thread*) (in /system/lib/libdvm.so)
+==6966==    by 0x60DEDF7: dvmInterpret(Thread*, Method const*, JValue*) (in /system/lib/libdvm.so)
+==6966==    by 0x6113D77: dvmCallMethodV(Thread*, Method const*, Object*, bool, JValue*, std::__va_list) (in /system/lib/libdvm.so)
+==6966==    by 0x60FD4C5: ??? (in /system/lib/libdvm.so)
+==6966==    by 0x494E06B: ??? (in /system/lib/libandroid_runtime.so)
+==6966==    by 0x494E231: android::AndroidRuntime::callMain(char const*, _jclass*, int, char const* const*) (in /system/lib/libandroid_runtime.so)
+==6966==    by 0x1091E7: ??? (in /system/bin/app_process)
+==6966==    by 0x494DE05: ??? (in /system/lib/libandroid_runtime.so)
+==6966==  Address 0x397cb130 is 0 bytes inside a block of size 188 alloc'd
+==6966==    at 0x481B04C: malloc (vg_replace_malloc.c:299)
+==6966==    by 0x6139331: dexReadAndVerifyClassData(unsigned char const**, unsigned char const*) (in /system/lib/libdvm.so)
+==6966==    by 0x61198B9: ??? (in /system/lib/libdvm.so)
+==6966==    by 0x6103265: dvmResolveNativeMethod(unsigned int const*, JValue*, Method const*, Thread*) (in /system/lib/libdvm.so)
+==6966==    by 0x60DA723: ??? (in /system/lib/libdvm.so)
+==6966==    by 0x60E1793: dvmMterpStd(Thread*) (in /system/lib/libdvm.so)
+==6966==    by 0x60DEDF7: dvmInterpret(Thread*, Method const*, JValue*) (in /system/lib/libdvm.so)
+==6966==    by 0x6113D77: dvmCallMethodV(Thread*, Method const*, Object*, bool, JValue*, std::__va_list) (in /system/lib/libdvm.so)
+==6966==    by 0x60FD4C5: ??? (in /system/lib/libdvm.so)
+==6966==    by 0x494E06B: ??? (in /system/lib/libandroid_runtime.so)
+==6966==    by 0x494E231: android::AndroidRuntime::callMain(char const*, _jclass*, int, char const* const*) (in /system/lib/libandroid_runtime.so)
+==6966==    by 0x1091E7: ??? (in /system/bin/app_process)
+==6966== 
+--6966-- Reading syms from /data/app-lib/com.example.hellojni-2/libhello-jni.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 1616 available
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryDecode: failed with error code: -10
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+==6966==   Warning: whilst reading EXIDX: ExtabEntryExtract: bytecode can't be represented
+--6966--   Reading EXIDX entries: 1542 attempted, 1071 successful
+--6966-- Reading syms from /system/lib/libsechook.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 17 available
+--6966--   Reading EXIDX entries: 16 attempted, 16 successful
+--6966-- Reading syms from /system/lib/hw/gralloc.tegra.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 50 available
+--6966--   Reading EXIDX entries: 49 attempted, 49 successful
+--6966-- Reading syms from /system/lib/libnvos.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 211 available
+--6966--   Reading EXIDX entries: 210 attempted, 210 successful
+--6966-- Reading syms from /system/lib/libcplconnectclient.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 4 available
+--6966--   Reading EXIDX entries: 3 attempted, 3 successful
+--6966-- Reading syms from /system/lib/libnvrm.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 169 available
+--6966--   Reading EXIDX entries: 168 attempted, 168 successful
+--6966-- Reading syms from /system/lib/libnvrm_graphics.so
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 85 available
+--6966--   Reading EXIDX entries: 84 attempted, 84 successful
+--6966-- Reading syms from /system/lib/libnvddk_2d_v2.so
+--6966--   Considering /system/lib/libnvddk_2d_v2.so ..
+--6966--   .. CRC mismatch (computed 60d2c0e3 wanted 9304e411)
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 191 available
+--6966--   Reading EXIDX entries: 190 attempted, 190 successful
+--6966-- Reading syms from /system/lib/libnvcms.so
+--6966--   Considering /system/lib/libnvcms.so ..
+--6966--   .. CRC mismatch (computed ad583736 wanted 8548d5d8)
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 31 available
+--6966--   Reading EXIDX entries: 30 attempted, 30 successful
+--6966-- Reading syms from /system/lib/libardrv_dynamic.so
+--6966--   Considering /system/lib/libardrv_dynamic.so ..
+--6966--   .. CRC mismatch (computed bc7d82c2 wanted 02c23cd9)
+--6966--    object doesn't have a symbol table
+--6966--   Reading EXIDX entries: 106 available
+--6966--   Reading EXIDX entries: 105 attempted, 105 successful
