@@ -1,0 +1,40 @@
+#!/bin/bash
+
+
+if [ ! -z "$1" ]; then
+    PkgName="com.uc.mediaplayertest"
+else
+    PkgName="com.example.videodecode"
+fi
+
+pwd
+echo PkgName:$PkgName	
+		
+p=`adb shell "ps | grep $PkgName$"` 
+echo "ps:"$p
+p=`echo $p | awk '{print $2}'`
+
+if [ "$p" == "" ]; then
+	echo ""
+	echo "ERROR: That doesn't seem to be a running process named '$1'. Please make sure your"
+	echo "       application has been started and that you are using the correct"
+	echo "       namespace argument."
+	exit
+fi
+
+echo "pid: $p"
+
+export armgdbsocket=5039
+if [ ! -z "$2" ]
+then
+	armgdbsocket="$2"
+fi
+
+echo socket:$armgdbsocket
+
+set -x
+adb forward tcp:$armgdbsocket tcp:$armgdbsocket
+adb shell /data/local/tmp/gdbserver :$armgdbsocket --attach $p
+set +x
+
+

@@ -26,8 +26,9 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <iostream>
- #include <string>
+#include <string>
 #include <vector>
+#include <list>
 
 #include <errno.h>
 
@@ -47,26 +48,35 @@ using namespace std;
 #define LOG_MAX_SIZE 4096
 
 AVFormatContext *pFormatCtx = NULL;
-int             audioStream, videoStream, delay_time, videoFlag = 0;
+int             audioStream, videoStream, delay_time, videoFlag = 0, decode_flag = 0 ;
 AVCodecContext  *aCodecCtx;
 AVCodec         *aCodec;
 AVFrame         *aFrame;
-AVPacket        packet;
+//AVPacket        packet;
 int  frameFinished = 0;
 
 int _fd;
 char buffer[LOG_MAX_SIZE];
 
 
-//List<AVPacket*> inQueue;
+typedef struct VideoPacket{
+    int index;
+    int eof;
+    AVPacket* packet;
+}VideoPacket;
 
+list<VideoPacket*> inQueue;
+pthread_mutex_t mutex;
+pthread_cond_t condition;
+pthread_t read_thread;
+pthread_t decode_thread;
 
 
 static int64_t all_time = 0;
 static int64_t count = 0;
 static int64_t stime = 0;
-static int64_t min = 0;
-static int64_t max = 0;
+static int64_t minn = 0;
+static int64_t maxx = 0;
 static int64_t ecount = 0;
 
 
@@ -136,53 +146,101 @@ int64_t getRealTimeUs()
 
 void *read_thread_fun(void* arg)
 {
-
     LOGE( "read_thread_fun enter");
 
     int ret;
     //int count = 0;
 
+    while(videoFlag != -1)
+    {
+        AVPacket* packet = (AVPacket*)malloc(sizeof(AVPacket));
+        av_init_packet(packet);
+        if(av_read_frame(pFormatCtx, packet) < 0) {
+            VideoPacket* vp = (VideoPacket*)malloc(sizeof(VideoPacket));
+            vp->packet = packet;
+            vp->eof = 1;
+            vp->index = 1111111;
+            LOGI( "read_thread_fun EOF 1");
+            pthread_mutex_lock(&mutex);
+            inQueue.push_back(vp);
+            pthread_cond_signal(&condition);
+            pthread_mutex_unlock(&mutex);
+            break;
+        }
+
+
+        if(packet->stream_index == videoStream) {
+
+            VideoPacket* vp = (VideoPacket*)malloc(sizeof(VideoPacket));
+            static int vcount = 0;
+            vcount++;
+            vp->packet = packet;
+            vp->index = vcount;
+            vp->eof = 0;
+            //LOGE( "read_thread_fun push_back");
+            pthread_mutex_lock(&mutex);
+            inQueue.push_back(vp);
+            //LOGE( "read_thread_fun push_back stream_index = %d packet.size= %d pst = %lld", vcount,  packet->size, packet->pts);
+            pthread_cond_signal(&condition);
+            pthread_mutex_unlock(&mutex);
+        } else {
+            av_free_packet(packet);
+        }
+    }
+
+    LOGI( "read_thread_fun exit");
+}
+
+#if 1
+void *decode_thread_fun(void* arg)
+{
+    LOGE( "decode_thread_fun enter");
+
     aFrame = avcodec_alloc_frame();
     if(aFrame == NULL) ;
 
+    while(decode_flag != -1) {
 
-    while(videoFlag != -1)
-    {
-        if(av_read_frame(pFormatCtx, &packet) < 0)
+        pthread_mutex_lock(&mutex);
+
+        //LOGI( "read_thread_fun inQueue 1 size = %zu", inQueue.size());
+        while(inQueue.empty())
+            pthread_cond_wait(&condition, &mutex);
+
+        VideoPacket* vp = *inQueue.begin();
+        //LOGI( "read_thread_fun inQueue 2 size = %zu  vp->index = %d pts = %lld", inQueue.size(),  vp->index, vp->packet->pts);
+        if(vp->eof) {
+            LOGI( "decode_thread_fun inQueue size = %zu vp->eof = %d", inQueue.size(), vp->eof);
+            pthread_mutex_unlock(&mutex);
+            free(vp);
             break;
+        }
 
-        if(packet.stream_index == videoStream)
-        {
-#if 1 //TODO Jack
-
-#if 1//def DEBUG_VIDEO_FRAME
-
-
-            int64_t decodeStartTimeUs = getRealTimeUs();
-#endif
-            ret = avcodec_decode_video2(aCodecCtx, aFrame, &frameFinished, &packet);
-            if(ret > 0 && frameFinished)
-            {
+#if 1 //TODO Jack 2
+        int64_t decodeStartTimeUs = getRealTimeUs();
+        //LOGI( "read_thread_fun decode inQueue size = %zu", inQueue.size());
+        int ret = avcodec_decode_video2(aCodecCtx, aFrame, &frameFinished, vp->packet);
+        if(ret > 0 && frameFinished) {
 #if 1//def DEBUG_VIDEO_FRAME
             int64_t decode_time =  getRealTimeUs() - decodeStartTimeUs;
 
             if (count == 0)
-                min = max = decode_time;
+                minn = maxx = decode_time;
 
             stime += decode_time;
             all_time += decode_time;
             count++;
 
-            if (min > decode_time) {
-                min = decode_time;
+            if (minn > decode_time) {
+                minn = decode_time;
             }
 
-            if (max < decode_time) {
-                max = decode_time;
+            if (maxx < decode_time) {
+                maxx = decode_time;
             }
 
             if(count%1000 == 0) {
-                LOGE( "count = %lld, stime = %lld min = %lld, max = %lld ecount = %lld", count, stime, min, max, ecount);
+                LOGE( "count = %lld, stime = %lld minn = %lld, maxx = %lld ecount = %lld", count, stime, minn, maxx, ecount);
 
                 memset(buffer, 0, LOG_MAX_SIZE);
                 sprintf(buffer, "count: %d  stime: %-20lld  \r\n", count, stime);
@@ -190,19 +248,25 @@ void *read_thread_fun(void* arg)
                 stime = 0;
             }
 #endif
-                //int data_size = av_samples_get_bufdder_size(
-                //        aFrame->linesize,aCodecCtx->channels,
-                //        aFrame->nb_samples,aCodecCtx->sample_fmt, 0);
-                //LOGI("videoDecodec  :%d",data_size);
-            } else {
-                ecount++;
-            }
-#endif
+        } else {
+            ecount++;
         }
 
+        inQueue.erase(inQueue.begin());
+
         //TODO Jack
-        av_free_packet(&packet);
-    }
+        if(vp->packet) {
+            //LOGI( "av_free_packet vp->packet = %p pts = %lld", vp->packet, vp->packet->pts);
+            av_free_packet(vp->packet);
+            //LOGI( "av_free_packet end vp->packet = %p", vp->packet);
+        }
+        free(vp);
+
+        pthread_mutex_unlock(&mutex);
+
+#endif //2
+    } //end while
+
     LOGE( "all_count: %lld  all_time: %-20lld  ecount: %-lld\n", count, all_time, ecount);
     memset(buffer, 0, LOG_MAX_SIZE);
     sprintf(buffer, "\nall_count: %lld  all_time: %-20lld  ecount: %-lld\n", count, all_time, ecount);
@@ -213,18 +277,8 @@ void *read_thread_fun(void* arg)
     }
 
     av_free(aFrame);
-}
 
-#if 0
-void *decode_thread_fun(void* arg)
-{
-    LOGE( "read_thread_fun enter");
-
-    while(decode_flag != -1) {
-
-        while(inQueue.empty())
-            pthread_cond_wait(&decode_condition, decode_mutex);
-    }
+    LOGI( "decode_thread_fun exit");
 }
 #endif
 
@@ -277,6 +331,8 @@ int jni_nativeInit( JNIEnv* env,jobject thiz, jstring fileName )
     if(avcodec_open2(aCodecCtx, aCodec, NULL) < 0)
         return -1;
 
+    pthread_mutex_init(&mutex, NULL);
+    pthread_cond_init(&condition, NULL);
 
     int ret;
     char filename[64] = { 0 };
@@ -293,6 +349,24 @@ int jni_nativeInit( JNIEnv* env,jobject thiz, jstring fileName )
     write(_fd, local_title, strlen(local_title) + 1);
     write(_fd, "\r\n", 2);
 
+    all_time = 0;
+    count = 0;
+    stime = 0;
+    minn = 0;
+    maxx = 0;
+    ecount = 0;
+
+    videoFlag = 0;
+    decode_flag = 0;
+
+    LOGE( "pthread_create read");
+    pthread_create(&read_thread, NULL, &read_thread_fun, NULL);
+
+
+    LOGE( "pthread_create decode");
+    pthread_create(&decode_thread, NULL, &decode_thread_fun, NULL);
+
+
     env->ReleaseStringUTFChars(fileName, local_title);
 
     return 0;
@@ -301,29 +375,19 @@ int jni_nativeInit( JNIEnv* env,jobject thiz, jstring fileName )
 void jni_nativeStart( JNIEnv* env,jobject thiz )
 {
     LOGE("%s", __FUNCTION__);
-
-    all_time = 0;
-    count = 0;
-    stime = 0;
-    min = 0;
-    max = 0;
-    ecount = 0;
-
-    videoFlag = 0;
-    pthread_t read_thread;
-    LOGE( "pthread_create read");
-    pthread_create(&read_thread, NULL, &read_thread_fun, NULL);
-
-    //pthread_t decode_thread;
-    //LOGE( "pthread_create decode");
-    //pthread_create(&decode_thread, NULL, &decode_thread_fun, NULL);
 }
 
 void jni_nativeStop( JNIEnv* env,jobject thiz )
 {
     videoFlag = -1;
+    decode_flag = -1;
     LOGE("%s", __FUNCTION__);
 
+    pthread_join(read_thread, NULL);
+    pthread_join(decode_thread, NULL);
+
+    pthread_mutex_destroy(&mutex);
+    pthread_cond_destroy(&condition);
 
     avcodec_close(aCodecCtx);
     avformat_close_input(&pFormatCtx);
