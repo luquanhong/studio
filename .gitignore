@@ -8,6 +8,9 @@
 # Java class files
 *.class
 
+*.o
+*.o.d
+
 # Generated files
 bin/
 gen/

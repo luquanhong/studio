@@ -1,0 +1,6 @@
+#!/bin/bash
+
+#echo "arm-linux-androideabi-gdb -x gdb-arm.setup"
+set -x
+arm-linux-androideabi-gdb -x gdb-arm-u3.setup
+set +x
