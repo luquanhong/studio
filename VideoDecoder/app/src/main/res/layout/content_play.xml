@@ -20,29 +20,78 @@
         android:text="Hello World!" />
 
     <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/select"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="59dp"
+        android:layout_below="@+id/testText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/videosp"
+            android:spinnerMode="dropdown"
+            android:entries="@array/video" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/select"
+        android:id="@+id/method">
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:id="@+id/thread" >
+
+            <RadioButton
+                android:text="decode1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/decode1"
+                android:layout_weight="1" />
+
+            <RadioButton
+                android:text="decode2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/decode2"
+                android:layout_weight="1" />
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:baselineAligned="false"
-        android:layout_below="@+id/testText"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout3"
+        android:layout_below="@+id/select"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="33dp">
+        android:layout_marginTop="55dp">
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="start h264"
+            android:layout_weight="1"
+            android:text="start"
             android:id="@+id/h264Btn"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="start h265"
-            android:id="@+id/h265Btn"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="stop"
             android:id="@+id/StopBtn" />
 

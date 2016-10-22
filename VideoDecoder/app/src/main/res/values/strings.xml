@@ -2,4 +2,12 @@
     <string name="app_name">Video Decoder</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_play">PlayActivity</string>
+    <string-array name="video">
+        <item>/sdcard/zuihou_480p_264.mp4</item>
+        <item>/sdcard/zuihou_480p_265.mp4</item>
+        <item>zuihou_encode_264.mp4</item>
+        <item>zuihou_encode_265.mp4</item>
+        <item>720p     h264</item>
+        <item>720p     h265</item>
+    </string-array>
 </resources>

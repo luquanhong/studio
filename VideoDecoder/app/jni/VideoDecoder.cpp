@@ -48,15 +48,17 @@ using namespace std;
 #define LOG_MAX_SIZE 4096
 
 AVFormatContext *pFormatCtx = NULL;
-int             audioStream, videoStream, delay_time, videoFlag = 0, decode_flag = 0 ;
+int             audioStream, videoStream, delay_time, videoFlag = 0, decode_flag = 0;
 AVCodecContext  *aCodecCtx;
 AVCodec         *aCodec;
 AVFrame         *aFrame;
-//AVPacket        packet;
+AVPacket        packet1;
 int  frameFinished = 0;
 
 int _fd;
 char buffer[LOG_MAX_SIZE];
+int _type;
+int  soloFlag;
 
 
 typedef struct VideoPacket{
@@ -70,6 +72,7 @@ pthread_mutex_t mutex;
 pthread_cond_t condition;
 pthread_t read_thread;
 pthread_t decode_thread;
+pthread_t solo_thread;
 
 
 static int64_t all_time = 0;
@@ -78,7 +81,7 @@ static int64_t stime = 0;
 static int64_t minn = 0;
 static int64_t maxx = 0;
 static int64_t ecount = 0;
-
+static int64_t t1 = 0;
 
 ////////////////////////////
 
@@ -187,11 +190,8 @@ void *read_thread_fun(void* arg)
             av_free_packet(packet);
         }
     }
-
-    LOGI( "read_thread_fun exit");
 }
 
-#if 1
 void *decode_thread_fun(void* arg)
 {
     LOGE( "decode_thread_fun enter");
@@ -280,9 +280,79 @@ void *decode_thread_fun(void* arg)
 
     LOGI( "decode_thread_fun exit");
 }
-#endif
 
-int jni_nativeInit( JNIEnv* env,jobject thiz, jstring fileName )
+void *solo_thread_fun(void* arg)
+{
+    LOGE( "solo_thread_fun enter");
+
+    int ret;
+    //int count = 0;
+
+    aFrame = avcodec_alloc_frame();
+
+    int64_t t0 = getRealTimeUs();
+    while(soloFlag != -1)
+    {
+        if(av_read_frame(pFormatCtx, &packet1) < 0) {
+            LOGI( "solo_thread_fun EOF 1");
+            break;
+        }
+
+        if(packet1.stream_index == videoStream) {
+
+           int64_t decodeStartTimeUs = getRealTimeUs();
+           int ret = avcodec_decode_video2(aCodecCtx, aFrame, &frameFinished, &packet1);
+           if(ret > 0 && frameFinished) {
+               int64_t decode_time =  getRealTimeUs() - decodeStartTimeUs;
+
+               if (count == 0)
+                   minn = maxx = decode_time;
+
+               stime += decode_time;
+               all_time += decode_time;
+               count++;
+
+               if (minn > decode_time) {
+                   minn = decode_time;
+               }
+
+               if (maxx < decode_time) {
+                   maxx = decode_time;
+               }
+
+               if(count%1000 == 0) {
+                   LOGE( "count = %lld, stime = %lld minn = %lld, maxx = %lld ecount = %lld", count, stime, minn, maxx, ecount);
+                   memset(buffer, 0, LOG_MAX_SIZE);
+                   sprintf(buffer, "count: %d  stime: %-20lld  \r\n", count, stime);
+                   write(_fd, buffer, strlen(buffer));
+                   stime = 0;
+               }
+
+           } else {
+             ecount++;
+           }
+        }
+
+        av_free_packet(&packet1);
+
+    } //end while
+
+    t1 = getRealTimeUs() - t0;
+    LOGE( "all_count: %lld t1 = %lld all_time: %-20lld  ecount: %-lld\n", count, t1, all_time, ecount);
+    memset(buffer, 0, LOG_MAX_SIZE);
+    sprintf(buffer, "\nall_count: %lld  t1 = %lld all_time: %-20lld  ecount: %-lld\n", count, t1, all_time, ecount);
+    write(_fd, buffer, strlen(buffer));
+
+    if (_fd > 0) {
+        close(_fd);
+    }
+
+    av_free(aFrame);
+}
+
+
+
+int jni_nativeInit( JNIEnv* env,jobject thiz, jstring fileName, int type)
 {
     //string v((char*)env->GetStringUTFChars(value, 0));
     //LOGE( "jni_nativeInit  %s", v.c_str());
@@ -290,6 +360,7 @@ int jni_nativeInit( JNIEnv* env,jobject thiz, jstring fileName )
     const char* local_title = env->GetStringUTFChars(fileName, NULL);
     LOGE( "jni_nativeInit  local_title %s", local_title);
 
+    _type = type;
     av_register_all();//注册所有支持的文件格式以及编解码器
     /*
      *只读取文件头，并不会填充流信息
@@ -331,8 +402,7 @@ int jni_nativeInit( JNIEnv* env,jobject thiz, jstring fileName )
     if(avcodec_open2(aCodecCtx, aCodec, NULL) < 0)
         return -1;
 
-    pthread_mutex_init(&mutex, NULL);
-    pthread_cond_init(&condition, NULL);
+
 
     int ret;
     char filename[64] = { 0 };
@@ -355,17 +425,27 @@ int jni_nativeInit( JNIEnv* env,jobject thiz, jstring fileName )
     minn = 0;
     maxx = 0;
     ecount = 0;
+    t1 = 0;
 
     videoFlag = 0;
     decode_flag = 0;
+    soloFlag = 0;
 
-    LOGE( "pthread_create read");
-    pthread_create(&read_thread, NULL, &read_thread_fun, NULL);
+    if (_type == 1) {
+        LOGE( "pthread_create read");
+        pthread_create(&solo_thread, NULL, &solo_thread_fun, NULL);
 
+    }
+    else if (_type == 2) {
+        pthread_mutex_init(&mutex, NULL);
+        pthread_cond_init(&condition, NULL);
 
-    LOGE( "pthread_create decode");
-    pthread_create(&decode_thread, NULL, &decode_thread_fun, NULL);
+        LOGE( "pthread_create read");
+        pthread_create(&read_thread, NULL, &read_thread_fun, NULL);
 
+        LOGE( "pthread_create decode");
+        pthread_create(&decode_thread, NULL, &decode_thread_fun, NULL);
+    }
 
     env->ReleaseStringUTFChars(fileName, local_title);
 
@@ -381,13 +461,18 @@ void jni_nativeStop( JNIEnv* env,jobject thiz )
 {
     videoFlag = -1;
     decode_flag = -1;
+    soloFlag = -1;
     LOGE("%s", __FUNCTION__);
 
-    pthread_join(read_thread, NULL);
-    pthread_join(decode_thread, NULL);
+    if (_type == 1) {
+        pthread_join(solo_thread, NULL);
+    } else if (_type == 2) {
+        pthread_join(read_thread, NULL);
+        pthread_join(decode_thread, NULL);
 
-    pthread_mutex_destroy(&mutex);
-    pthread_cond_destroy(&condition);
+        pthread_mutex_destroy(&mutex);
+        pthread_cond_destroy(&condition);
+    }
 
     avcodec_close(aCodecCtx);
     avformat_close_input(&pFormatCtx);
@@ -423,7 +508,7 @@ static const char *classPathName = "com/example/videodecode/FFMediaPlayer";
 static JNINativeMethod methods[] = {
 				{"stringFromJNI",		"()Ljava/lang/String;",	    (void*)jni_stringFromJNI},
 				{"setStringToJni",		"(Ljava/lang/String;)V",	(void*)jni_setStringToJni},
-				{"nativeInit",  		"(Ljava/lang/String;)I",	(void*)jni_nativeInit},
+				{"nativeInit",  		"(Ljava/lang/String;I)I",	(void*)jni_nativeInit},
 				{"nativeStart",	    	"()V",	                    (void*)jni_nativeStart},
 				{"nativeStop",		    "()V",	                    (void*)jni_nativeStop},
 };

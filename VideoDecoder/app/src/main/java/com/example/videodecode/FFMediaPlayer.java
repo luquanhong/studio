@@ -18,8 +18,8 @@ public class FFMediaPlayer {
        return stringFromJNI();
    }
 
-    public int init(String name){
-        return nativeInit(name);
+    public int init(String name, int type){
+        return nativeInit(name, type);
     }
 
     public void start(){
@@ -34,7 +34,7 @@ public class FFMediaPlayer {
 
     public native void setStringToJni(String value);
 
-    public native int nativeInit(String name);
+    public native int nativeInit(String name, int type);
 
     public native void nativeStart();
 
