@@ -1,0 +1,8 @@
+#set solib-search-path /home/jack/workstation/u3/release-2.9.5/OUT/SYMBOL:/home/jack/workstation/u3/release-2.9.5/sdk-android/ApolloSDK/obj/local/armeabi
+#set solib-search-path /home/jack/workstation/debug/3-24-2016/so-285-loading/SYMBOL
+#set solib-search-path /home/jack/workstation/debug/3-30-2016
+set solib-search-path /home/jack/programs/gdb-apollo/xiaomi/:/home/jack/workstation/github/studio/VideoDecoder/app/obj/local/armeabi
+#set solib-search-path /home/jack/programs/gdb-apollo/nexu5/:/home/jack/workstation/u3/u3player/OUT/SYMBOL/:/home/jack/workstation/u3/u3player/sdk-android/ApolloSDK/obj/local/armeabi
+#set solib-search-path /home/jack/programs/gdb-apollo/note2/lib/:/home/jack/workstation/u3/u3player/sdk-android/ApolloSDK/obj/local/armeabi/:/home/jack/workstation/u3/u3player/OUT/SYMBOL/
+file /home/jack/programs/gdb-apollo/app_process
+target remote :5039
