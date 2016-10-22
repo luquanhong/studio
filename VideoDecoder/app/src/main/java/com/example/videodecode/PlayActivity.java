@@ -27,6 +27,7 @@ public class PlayActivity extends AppCompatActivity {
     private RadioButton decodeR;
     private RadioButton readR;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

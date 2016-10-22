@@ -196,7 +196,7 @@ void *decode_thread_fun(void* arg)
 {
     LOGE( "decode_thread_fun enter");
 
-    aFrame = avcodec_alloc_frame();
+    aFrame = av_frame_alloc();//avcodec_alloc_frame();
     if(aFrame == NULL) ;
 
     while(decode_flag != -1) {
@@ -288,7 +288,7 @@ void *solo_thread_fun(void* arg)
     int ret;
     //int count = 0;
 
-    aFrame = avcodec_alloc_frame();
+    aFrame = av_frame_alloc();//avcodec_alloc_frame();
 
     int64_t t0 = getRealTimeUs();
     while(soloFlag != -1)

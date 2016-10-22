@@ -42,7 +42,7 @@ public class FFMediaPlayer {
 
 
     static {
-        System.loadLibrary("ffmpeg");
+        System.loadLibrary("ijkffmpeg");
         System.loadLibrary("hello-jni");
     }
 }

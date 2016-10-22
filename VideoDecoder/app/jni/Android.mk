@@ -24,9 +24,9 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := ffmpeg-prebuilt
-LOCAL_SRC_FILES := $(LOCAL_PATH)/ffmpeg/libffmpeg.so
-LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/ffmpeg/include
-#LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/ffmpeg/include
+LOCAL_SRC_FILES := $(LOCAL_PATH)/ffmpeg3/libijkffmpeg.so
+LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/ffmpeg3/include
+#LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/ffmpeg3/include
 
 include $(PREBUILT_SHARED_LIBRARY)
 
@@ -43,15 +43,15 @@ LOCAL_ALLOW_UNDEFINED_SYMBOLS=false
 
 LOCAL_MODULE    := hello-jni
 
-#LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/ffmpeg/include
-LOCAL_C_INCLUDES := $(LOCAL_PATH)/ffmpeg/include
+#LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/ffmpeg3/include
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/ffmpeg3/include
 
 $(info LOCAL_EXPORT_C_INCLUDES = $(LOCAL_C_INCLUDES))
 
 LOCAL_SRC_FILES :=  looper.cpp \
                     VideoDecoder.cpp
 
-LOCAL_LDLIBS    := -llog  -L$(LOCAL_PATH)/ffmpeg -lffmpeg
+LOCAL_LDLIBS    := -llog  -L$(LOCAL_PATH)/ffmpeg3 -lijkffmpeg
 
 $(info LOCAL_LDLIBS = $(LOCAL_LDLIBS))
 
